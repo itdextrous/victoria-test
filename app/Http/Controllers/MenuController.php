@@ -101,10 +101,8 @@ class MenuController extends BaseController
 		foreach($MenuItem as $menu)
 		{
 			echo '<li><a href="#">' . $menu->name . '</a>';
-			$chil =  DB::select('select * from menu_items where parent_id='$menu->parent_id);
-        if($menu->parent_id) {
-            print_menu($menu);
-        }
+			
+			
         echo '</li>';
 		}
     }
