@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Date;
 
 class EventsController extends BaseController
@@ -97,7 +98,26 @@ class EventsController extends BaseController
      */
 
     public function getEventsWithWorkshops() {
-        throw new \Exception('implement in coding task 1');
+		/* implement in coding task 1 */
+		
+		
+		 $Event = Event::all();
+		 
+		// print_r($Event);
+		 foreach($Event as $event)
+		 {
+			  echo $event->name;
+			  echo "<br>";
+			  $select = DB::select('select * from workshops where event_id='.$event->id);
+			  foreach($select as $mm)
+			  {
+				echo  $mm->name;
+				echo "<br>";
+			  }
+		 }
+		 
+		//  return response()->json($wholedate,200);
+       // throw new \Exception('implement in coding task 1');
     }
 
 
