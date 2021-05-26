@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\MenuItem;
 use Illuminate\Routing\Controller as BaseController;
-
+use Illuminate\Support\Facades\DB;
 class MenuController extends BaseController
 {
     /*
@@ -95,6 +95,17 @@ class MenuController extends BaseController
      */
 
     public function getMenuItems() {
-        throw new \Exception('implement in coding task 3');
+		/* implement in coding task 3 */
+        $MenuItem =   DB::select('select * from menu_items ORDER BY parent_id');
+		
+		foreach($MenuItem as $menu)
+		{
+			echo '<li><a href="#">' . $menu->name . '</a>';
+			$chil =  DB::select('select * from menu_items where parent_id='$menu->parent_id);
+        if($menu->parent_id) {
+            print_menu($menu);
+        }
+        echo '</li>';
+		}
     }
 }
